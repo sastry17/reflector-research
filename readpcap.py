@@ -2,7 +2,7 @@ from scapy.all import *
 import csv
 
 print("Reading pcap")
-packets = PcapReader('ntpflood.pcap')
+packets = PcapReader('NTP_sync.pcap')
 print("Completed reading pcap")
 
 #pkt=packets[4]
@@ -13,22 +13,23 @@ print("Completed reading pcap")
 #print(pkt[3].version)
 
 
-f = open('NTP_ver_020122.csv','a')
+#f = open('NTP_ver_020122.csv','a')
 count = 0
 
 
 for packet in packets:
-    if packet.haslayer("NTP") and packet[2].sport==123 and packet[1].dst=="128.232.21.75":
+    if packet.haslayer("NTP") and packet[2].sport==123 and packet[1].dst=="128.232.21.75" and packet[1].src!="202.232.184.169":
         src = packet[1].src
         dst = packet[1].dst
         sport = packet[2].sport  
         ver = packet[3].version
+        packet.show()
         #print(src, sport, ver)
         row = "\n"+src+', '+str(sport)+', '+dst+', '+str(ver)
         print(row)
-        f.write(row)
+        #f.write(row)
         count += 1
         #print(count)
-f.close()
+#f.close()
 print("Done!")
 
