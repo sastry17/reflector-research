@@ -9,6 +9,7 @@ def scan(file):
     f = open(file, 'r')
     s = open("nmapOut.csv",'w')
     hostsl = f.readlines()
+    print("read complete!")
     for line in hostsl:
         try:
             line=line.strip()
@@ -40,7 +41,7 @@ def scan(file):
                             #row =  str("\n"+host+", "+proto+", "+str(port)+", "+pname)
                             row =  "\n"+ip+", "+str(port)+", "+proto+", "+pname
                             s.write(row)
-                            print(row)
+                            #print(row)
                     except Error as e:
                         print(e)
                         pass
