@@ -18,19 +18,19 @@ f = open('NTP_honeypot_021221.csv','a')
 
 
 for packet in packets:
-    if packet.haslayer("NTP") and packet[2].sport==123 and packet[1].dst=='':
+    if packet.haslayer("NTP") and packet[2].sport==123:
     #if packet.haslayer("NTP") and packet[2].sport==123 and (packet[3].precision == 0 or packet[3].delay ==0 or packet[3].dispersion==0):
         src = packet[1].src
-        dst = packet[1].dst
+        #dst = packet[1].dst
         ttl = packet[1].ttl
         sport = packet[2].sport  
-        precision = packet[3].precision
-        delay= packet[3].delay
-        dispersion = packet[3].dispersion
-        orig = packet[3].orig
+        #precision = packet[3].precision
+        #delay= packet[3].delay
+        #dispersion = packet[3].dispersion
+        #orig = packet[3].orig
         packet.show()
         #print(src, sport, ver)
-        row = "\n"+src+', '+str(sport)+', '+dst+', '+str(precision)+', '+str(delay)+', '+str(dispersion)+', '+str(orig)
+        #row = "\n"+src+', '+str(sport)+', '+dst+', '+str(precision)+', '+str(delay)+', '+str(dispersion)+', '+str(orig)
         #print(row)
         #f.write(row)
         #count += 1
